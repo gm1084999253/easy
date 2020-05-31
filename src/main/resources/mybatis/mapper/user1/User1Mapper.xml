@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mbyte.easy.user1.mapper.User1Mapper">
+  <resultMap id="BaseResultMap" type="com.mbyte.easy.user1.entity.User1">
+      <id column="id" jdbcType="INTEGER" property="id" />
+      <id column="username" jdbcType="VARCHAR" property="username" />
+      <id column="email" jdbcType="VARCHAR" property="email" />
+      <id column="password" jdbcType="VARCHAR" property="password" />
+      <id column="state" jdbcType="INTEGER" property="state" />
+      <id column="code" jdbcType="VARCHAR" property="code" />
+      <id column="studentId" jdbcType="INTEGER" property="studentId" />
+      <id column="school" jdbcType="VARCHAR" property="school" />
+      <id column="schoolId" jdbcType="INTEGER" property="schoolId" />
+      <id column="studentImg" jdbcType="VARCHAR" property="studentImg" />
+      <id column="lastTime" jdbcType="TIMESTAMP" property="lastTime" />
+      <id column="createTime" jdbcType="TIMESTAMP" property="createTime" />
+
+  </resultMap>
+  <sql id="Base_Column_List">
+              id,
+      username, email, password, state, code, studentId, school, schoolId, studentImg, lastTime, createTime
+  </sql>
+
+<!--注意:在打开下面注释的时候，在执行添加和更新操作时，一定要添加事物，否则会造成无法添加和更新-->
+<!--
+ <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user1
+       where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from  user1
+       where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mbyte.easy.user1.entity.User1">
+    insert into user1 (username, email, password, state, code, studentId, school, schoolId, studentImg, lastTime, createTime)
+    values (
+         username = #{username,jdbcType=VARCHAR},
+         email = #{email,jdbcType=VARCHAR},
+         password = #{password,jdbcType=VARCHAR},
+         state = #{state,jdbcType=INTEGER},
+         code = #{code,jdbcType=VARCHAR},
+         studentId = #{studentId,jdbcType=INTEGER},
+         school = #{school,jdbcType=VARCHAR},
+         schoolId = #{schoolId,jdbcType=INTEGER},
+         studentImg = #{studentImg,jdbcType=VARCHAR},
+         lastTime = #{lastTime,jdbcType=TIMESTAMP},
+         createTime = #{createTime,jdbcType=TIMESTAMP}
+    )
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.mbyte.easy.user1.entity.User1">
+    insert into user1
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="username != null">
+        username,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="studentId != null">
+        studentId,
+      </if>
+      <if test="school != null">
+        school,
+      </if>
+      <if test="schoolId != null">
+        schoolId,
+      </if>
+      <if test="studentImg != null">
+        studentImg,
+      </if>
+      <if test="lastTime != null">
+        lastTime,
+      </if>
+      <if test="createTime != null">
+        createTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+
+      <if test="state != null">
+        state = #{state,jdbcType=INTEGER},
+      </if>
+
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+
+      <if test="studentId != null">
+        studentId = #{studentId,jdbcType=INTEGER},
+      </if>
+
+      <if test="school != null">
+        school = #{school,jdbcType=VARCHAR},
+      </if>
+
+      <if test="schoolId != null">
+        schoolId = #{schoolId,jdbcType=INTEGER},
+      </if>
+
+      <if test="studentImg != null">
+        studentImg = #{studentImg,jdbcType=VARCHAR},
+      </if>
+
+      <if test="lastTime != null">
+        lastTime = #{lastTime,jdbcType=TIMESTAMP},
+      </if>
+
+      <if test="createTime != null">
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mbyte.easy.user1.entity.User1">
+    update user1
+    <set>
+       <if test="username != null">
+         username = #{username,jdbcType=VARCHAR},
+      </if>
+       <if test="email != null">
+         email = #{email,jdbcType=VARCHAR},
+      </if>
+       <if test="password != null">
+         password = #{password,jdbcType=VARCHAR},
+      </if>
+       <if test="state != null">
+         state = #{state,jdbcType=INTEGER},
+      </if>
+       <if test="code != null">
+         code = #{code,jdbcType=VARCHAR},
+      </if>
+       <if test="studentId != null">
+         studentId = #{studentId,jdbcType=INTEGER},
+      </if>
+       <if test="school != null">
+         school = #{school,jdbcType=VARCHAR},
+      </if>
+       <if test="schoolId != null">
+         schoolId = #{schoolId,jdbcType=INTEGER},
+      </if>
+       <if test="studentImg != null">
+         studentImg = #{studentImg,jdbcType=VARCHAR},
+      </if>
+       <if test="lastTime != null">
+         lastTime = #{lastTime,jdbcType=TIMESTAMP},
+      </if>
+       <if test="createTime != null">
+         createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+       where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mbyte.easy.user1.entity.User1">
+    update user1
+    set
+        username = #{username,jdbcType=VARCHAR},
+        email = #{email,jdbcType=VARCHAR},
+        password = #{password,jdbcType=VARCHAR},
+        state = #{state,jdbcType=INTEGER},
+        code = #{code,jdbcType=VARCHAR},
+        studentId = #{studentId,jdbcType=INTEGER},
+        school = #{school,jdbcType=VARCHAR},
+        schoolId = #{schoolId,jdbcType=INTEGER},
+        studentImg = #{studentImg,jdbcType=VARCHAR},
+        lastTime = #{lastTime,jdbcType=TIMESTAMP},
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+
+       where id = #{id,jdbcType=INTEGER}
+  </update>
+-->
+</mapper>

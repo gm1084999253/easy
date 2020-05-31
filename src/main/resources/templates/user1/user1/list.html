@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:include="_meta :: header">
+    <title>列表</title>
+</head>
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>管理<span
+            class="c-gray en">&gt;</span>列表<a class="btn btn-success radius r"
+                                                style="line-height:1.6em;margin-top:3px"
+                                                href="javascript:location.replace(location.href);" title="刷新"><i
+                class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="page-container">
+    <form action="#" th:action="@{/user1/user1}" method="post">
+        <div class="layui-body">
+            <!-- 内容主体区域 -->
+            <fieldset class="layui-elem-field">
+                <legend>列表</legend>
+                <div class="layui-field-box">
+
+                    <hr style="margin: 0">
+                    <div class="cl pd-5 bg-1 bk-gray">
+						<span class="l">
+						<a href="javascript:;"
+                           onclick="deleteAll('/user1/user1/deleteAll')"
+                           class="layui-btn  layui-btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
+						<a href="javascript:;"
+                           onclick="layer_show('添加','/user1/user1/addBefore',900,500)"
+                           class="layui-btn  layui-btn-normal radius"><i class="Hui-iconfont">&#xe600;</i> 添加</a>
+						</span>
+                        <span class="r wei-height">共有数据：<strong th:text="${pageInfo.total}"></strong> 条</span>
+                    </div>
+                    <hr>
+
+                    <div class="cl pd-5 bg-1 bk-gray ">
+                        <div class="searchByField">
+                                         <input type="input-text" class="input-text" th:value="${searchInfo.username}" name="username" placeholder="搜索用户名" id="username"/>
+                                         <input type="input-text" class="input-text" th:value="${searchInfo.email}" name="email" placeholder="搜索用户邮箱" id="email"/>
+                                         <input type="input-text" class="input-text" th:value="${searchInfo.password}" name="password" placeholder="搜索用户密码" id="password"/>
+                                         <input type="input-text" class="input-text" th:value="${searchInfo.state}" name="state" placeholder="搜索用户激活状态：0表示未激活，1表示激活" id="state"/>
+                                         <input type="input-text" class="input-text" th:value="${searchInfo.code}" name="code" placeholder="搜索激活码" id="code"/>
+                                         <input type="input-text" class="input-text" th:value="${searchInfo.studentId}" name="studentId" placeholder="搜索学号" id="studentId"/>
+                                         <input type="input-text" class="input-text" th:value="${searchInfo.school}" name="school" placeholder="搜索学校" id="school"/>
+                                         <input type="input-text" class="input-text" th:value="${searchInfo.schoolId}" name="schoolId" placeholder="搜索学校id" id="schoolId"/>
+                                         <input type="input-text" class="input-text" th:value="${searchInfo.studentImg}" name="studentImg" placeholder="搜索头像" id="studentImg"/>
+                                         <input type="input-text" placeholder="搜索最后登录时间" name="lastTimeSpace" th:value="${lastTimeSpace}" class="input-text  timeSpace"/>
+                            <button type="submit"
+                                    class="layui-btn  layui-btn-success radius"><i
+                                        class="Hui-iconfont">&#xe665;</i> 搜索
+                            </button>
+                        </div>
+                    </div>
+
+                    <table class="layui-table text-c">
+                        <thead>
+                        <tr class="text-c">
+                            <th width="25"><input type="checkbox" name="" value=""/></th>
+                            <th width="25">序号</th>
+                                <th width="40">用户名</th>
+                                <th width="40">用户邮箱</th>
+                                <th width="40">用户密码</th>
+                                <th width="40">用户激活状态：0表示未激活，1表示激活</th>
+                                <th width="40">激活码</th>
+                                <th width="40">学号</th>
+                                <th width="40">学校</th>
+                                <th width="40">学校id</th>
+                                <th width="40">头像</th>
+                                <th width="40">最后登录时间</th>
+                                <th width="40">创建时间</th>
+                            <th width="100">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="text-c" th:if="${pageInfo.list.size() == 0}">
+                            <td colspan="15"><strong>暂无数据</strong></td>
+                        </tr>
+                        <tr class="text-c" th:each="user1,count:${pageInfo.list}">
+                            <td><input type="checkbox" value="1" th:value="${user1.id}"
+                                       name="id"/></td>
+                            <td th:text="${count.count}"></td>
+                                        <td th:text="${user1.username}"></td>
+                                        <td th:text="${user1.email}"></td>
+                                        <td th:text="${user1.password}"></td>
+                                        <td th:text="${user1.state}"></td>
+                                        <td th:text="${user1.code}"></td>
+                                        <td th:text="${user1.studentId}"></td>
+                                        <td th:text="${user1.school}"></td>
+                                        <td th:text="${user1.schoolId}"></td>
+                                        <td th:text="${user1.studentImg}"></td>
+                                    <td th:text="${#temporals.format(user1.lastTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                                    <td th:text="${#temporals.format(user1.createTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                            <td class="td-manage">
+                                <a title="编辑" href="javascript:;"
+                                   th:onclick="'javascript:layer_show(\'编辑\',\'/user1/'+'user1'+'/editBefore/'+${user1.id}+'\',900,500)'"
+                                   class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
+                                <a title="删除" href="javascript:;"
+                                   th:onclick="'javascript:deleteById(\'/user1/'+'user1'+'/delete/'+${user1.id}+'\')'"
+                                   class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </fieldset>
+        </div>
+        <div th:include="_pagination :: page"></div>
+    </form>
+</div>
+<!--_footer 作为公共模版分离出去-->
+<div th:replace="_footer :: footerjs">
+</div>
+<!--/_footer 作为公共模版分离出去-->
+<script>
+    //日期时间范围选择
+    laydate.render({
+
+    });
+    lay('.timeSpace').each(function(){
+        laydate.render({
+            elem: this
+            ,type: 'datetime'
+            ,range: true //或 range: '~' 来自定义分割字符
+        });
+    });
+
+</script>
+</body>
+</html>

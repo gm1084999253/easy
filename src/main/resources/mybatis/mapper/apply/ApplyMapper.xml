@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mbyte.easy.apply.mapper.ApplyMapper">
+  <resultMap id="BaseResultMap" type="com.mbyte.easy.apply.entity.Apply">
+      <id column="id" jdbcType="BIGINT" property="id" />
+      <id column="device_id" jdbcType="BIGINT" property="deviceId" />
+      <id column="stu_id" jdbcType="BIGINT" property="stuId" />
+      <id column="renew" jdbcType="SMALLINT" property="renew" />
+      <id column="operator" jdbcType="VARCHAR" property="operator" />
+      <id column="status" jdbcType="SMALLINT" property="status" />
+      <id column="apply_time" jdbcType="TIMESTAMP" property="applyTime" />
+      <id column="back_time" jdbcType="TIMESTAMP" property="backTime" />
+      <id column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+      <id column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+
+  </resultMap>
+  <sql id="Base_Column_List">
+              id,
+      device_id, stu_id, renew, operator, status, apply_time, back_time, create_time, update_time
+  </sql>
+
+<!--注意:在打开下面注释的时候，在执行添加和更新操作时，一定要添加事物，否则会造成无法添加和更新-->
+<!--
+ <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from device_apply
+       where id = #{id,jdbcType=BIGINT}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from  device_apply
+       where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mbyte.easy.apply.entity.Apply">
+    insert into device_apply (device_id, stu_id, renew, operator, status, apply_time, back_time, create_time, update_time)
+    values (
+         device_id = #{deviceId,jdbcType=BIGINT},
+         stu_id = #{stuId,jdbcType=BIGINT},
+         renew = #{renew,jdbcType=SMALLINT},
+         operator = #{operator,jdbcType=VARCHAR},
+         status = #{status,jdbcType=SMALLINT},
+         apply_time = #{applyTime,jdbcType=TIMESTAMP},
+         back_time = #{backTime,jdbcType=TIMESTAMP},
+         create_time = #{createTime,jdbcType=TIMESTAMP},
+         update_time = #{updateTime,jdbcType=TIMESTAMP}
+    )
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.mbyte.easy.apply.entity.Apply">
+    insert into device_apply
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="deviceId != null">
+        device_id,
+      </if>
+      <if test="stuId != null">
+        stu_id,
+      </if>
+      <if test="renew != null">
+        renew,
+      </if>
+      <if test="operator != null">
+        operator,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="applyTime != null">
+        apply_time,
+      </if>
+      <if test="backTime != null">
+        back_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+
+      <if test="deviceId != null">
+        device_id = #{deviceId,jdbcType=BIGINT},
+      </if>
+
+      <if test="stuId != null">
+        stu_id = #{stuId,jdbcType=BIGINT},
+      </if>
+
+      <if test="renew != null">
+        renew = #{renew,jdbcType=SMALLINT},
+      </if>
+
+      <if test="operator != null">
+        operator = #{operator,jdbcType=VARCHAR},
+      </if>
+
+      <if test="status != null">
+        status = #{status,jdbcType=SMALLINT},
+      </if>
+
+      <if test="applyTime != null">
+        apply_time = #{applyTime,jdbcType=TIMESTAMP},
+      </if>
+
+      <if test="backTime != null">
+        back_time = #{backTime,jdbcType=TIMESTAMP},
+      </if>
+
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mbyte.easy.apply.entity.Apply">
+    update device_apply
+    <set>
+       <if test="deviceId != null">
+         device_id = #{deviceId,jdbcType=BIGINT},
+      </if>
+       <if test="stuId != null">
+         stu_id = #{stuId,jdbcType=BIGINT},
+      </if>
+       <if test="renew != null">
+         renew = #{renew,jdbcType=SMALLINT},
+      </if>
+       <if test="operator != null">
+         operator = #{operator,jdbcType=VARCHAR},
+      </if>
+       <if test="status != null">
+         status = #{status,jdbcType=SMALLINT},
+      </if>
+       <if test="applyTime != null">
+         apply_time = #{applyTime,jdbcType=TIMESTAMP},
+      </if>
+       <if test="backTime != null">
+         back_time = #{backTime,jdbcType=TIMESTAMP},
+      </if>
+       <if test="createTime != null">
+         create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+       <if test="updateTime != null">
+         update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+       where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mbyte.easy.apply.entity.Apply">
+    update device_apply
+    set
+        device_id = #{deviceId,jdbcType=BIGINT},
+        stu_id = #{stuId,jdbcType=BIGINT},
+        renew = #{renew,jdbcType=SMALLINT},
+        operator = #{operator,jdbcType=VARCHAR},
+        status = #{status,jdbcType=SMALLINT},
+        apply_time = #{applyTime,jdbcType=TIMESTAMP},
+        back_time = #{backTime,jdbcType=TIMESTAMP},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+
+       where id = #{id,jdbcType=BIGINT}
+  </update>
+-->
+</mapper>
